@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+# try something like
+def searchapi():
+	return service()
+
+@service.jsonrpc
+def gettrendingvedio(region, start, end):
+    #try:
+    region = db(db.d_region.f_region == region).select()[0]
+    #videos = [v.id for v in db(db.trending_vedio.f_region == region).select(db.trending_vedio.video)] #limitby=(start,end))]
+    return db(db.trending_vedio.f_region == region).select(db.trending_vedio.video)
+    #return db(db.video.id.belongs(videos)).select()
+
+@service.jsonrpc
+def gettrendingvedioboard(start, end):
+    return db(db.trending_board).select(limitby=(start,end))
+
+@service.jsonrpc
+def seachbytag(tag):
+    tag = db(db.tag.tag == tag).select()
+    return db(db.vedio.id == tag.id).select()

@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+# try something like
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/manage_users (requires membership in
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    """
+    return dict(form=auth())
+
+def verifyUser():
+    username = request.vars['username']
+    user = db(db.auth_user.username == username).select()
+    import gluon.contrib.simplejson
+    try:
+        user[0]
+        return gluon.contrib.simplejson.dumps({'result': True})
+    except:
+        return gluon.contrib.simplejson.dumps({'result': False, 'name':username})
+
+def verifyUserEmail():
+    useremail = request.vars['useremail']
+    user = db(db.auth_user.email == useremail).select()
+    import gluon.contrib.simplejson
+    try:
+        user[0]
+        return gluon.contrib.simplejson.dumps({'result': True})
+    except:
+        return gluon.contrib.simplejson.dumps({'result': False})
+
+auth.settings.allow_basic_login = True
+
+@auth.requires_login()
+def userapi():
+    return service()
+
+
+
+@service.jsonrpc
+def createvedioboard(board_name, icon):
+    user = auth.user
+    try:
+        db.video_board.insert(board_name = board_name, user = user, icon = icon)
+        return {'user': auth.user, 'result': True}
+    except:
+        return {'result': False}
+
+@service.jsonrpc
+def addvedio(user, name, fileid, thumbnail):
+    user = auth.user
+    try:
+        db.video.insert(name = name, thumbnail = thumbnail, user_d = user, fileid = fileid)
+        return {'user': auth.user, 'result': True}
+    except:
+        return {'result': False}
+
+@service.jsonrpc
+def markfavrioute(vedio):
+    user = auth.user
+    try:
+        db.favrioute.insert(vedio, user = user)
+        return {'user': auth.user, 'result': True}
+    except:
+        return {'result': False}
+
+@service.jsonrpc
+def addvediotoboard(board, vedio):
+    try:
+        board = db(db.vedio_board.board_name == board).select()
+        vedio = db(db.vedio.id == vedio).select()
+        db.video_item_board.insert(vedio_board = board, vedio = vedio)
+        return {'result': True}
+    except:
+        return {'result': False}
+
+@service.jsonrpc
+def addtag(tag, vedio):
+    try:
+        tag = db(db.tag.tag == tag).select()
+        vedio = db(db.vedio.id == vedio).select()
+        db.tag_item.insert(tag = tag, vedio = vedio)
+        return {'result': True}
+    except:
+        return {'result': False}

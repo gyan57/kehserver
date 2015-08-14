@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+from gluon.tools import Auth
+auth = Auth(db)
+
+db.define_table('video_board', Field('board_name', 'string', required=True),
+                Field('user_d', db.auth_user, required=True),
+                Field('icon_id', 'integer'),
+                format='%(board_name)s')
+
+db.define_table('video',
+                Field('name', 'string', required=True),
+                Field('fileid', 'integer', required=True, unique=True),
+                Field('thumbnail', 'integer', required=True),
+                Field('user_d', db.auth_user, required=True),
+                format='%(name)s')
+
+db.define_table('video_board_item', Field('vedio_board', db.video_board, required=True),
+                Field('vedio', db.video, required=True))
+
+db.define_table('tag', Field('tag', 'string', required=True, unique=True))
+
+db.define_table('tag_item', Field('tag', db.tag, required=True),
+                Field('vedio', db.video))
+
+db.define_table('favriouts', Field('user_d', db.auth_user, required=True),
+                Field('video', db.video, required=True))
+
+
+# db for region
+db.define_table('d_region', Field('f_region', 'string', required=True))
+
+db.define_table('trending_vedio',
+                Field('f_region', db.d_region, required=True),
+                Field('index_i', 'integer', required=True),
+                Field('video', db.video, required=True))
+
+db.define_table('trending_board', Field('region', 'string', required=True),
+                Field('index_i', 'integer', required=True),
+                Field('vedio_board', db.video_board, required=True))
+
+db.define_table('discover', Field('region', 'string', required=True),
+                Field('index_i', 'integer', required=True),
+                Field('vedio', db.video, required=True))

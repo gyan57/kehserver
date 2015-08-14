@@ -1,0 +1,401 @@
+timestamp: 2015-07-30T19:22:50.870730
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2015-07-30T19:22:51.001846
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-07-30T19:22:51.104432
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:22:51.205468
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2015-07-30T19:22:51.314707
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-07-30T19:22:51.406704
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2015-07-30T19:45:27.142871
+ALTER TABLE auth_user ADD username CHAR(128);
+timestamp: 2015-07-30T19:45:27.283437
+ALTER TABLE auth_user ADD dob CHAR(512);
+success!
+timestamp: 2015-07-30T19:45:27.431598
+CREATE TABLE video_board(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    board_name CHAR(512),
+    user_d INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    icon_id INTEGER
+);
+success!
+timestamp: 2015-07-30T19:45:27.569581
+CREATE TABLE video(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    fileid INTEGER,
+    thumbnail INTEGER,
+    user_d INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:45:27.695324
+CREATE TABLE video_board_item(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    vedio_board INTEGER REFERENCES video_board (id) ON DELETE CASCADE,
+    vedio INTEGER REFERENCES video (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:45:27.804229
+CREATE TABLE tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag CHAR(512) UNIQUE
+);
+success!
+timestamp: 2015-07-30T19:45:27.929060
+CREATE TABLE tag_item(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag INTEGER REFERENCES tag (id) ON DELETE CASCADE,
+    vedio INTEGER REFERENCES video (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:45:28.063409
+CREATE TABLE favriouts(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_d INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    video INTEGER REFERENCES video (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:45:28.197335
+CREATE TABLE trending_vedio(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    region CHAR(512),
+    index_i INTEGER,
+    video INTEGER REFERENCES video (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:45:28.315953
+CREATE TABLE trending_board(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    region CHAR(512),
+    index_i INTEGER,
+    vedio_board INTEGER REFERENCES video_board (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-30T19:45:28.431855
+CREATE TABLE discover(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    region CHAR(512),
+    index_i INTEGER,
+    vedio INTEGER REFERENCES video (id) ON DELETE CASCADE
+);
+success!
+success!
+timestamp: 2015-07-31T12:54:04.399170
+CREATE TABLE d_region(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_region CHAR(512)
+);
+success!
+timestamp: 2015-07-31T12:54:04.540642
+ALTER TABLE trending_vedio ADD f_region INTEGER REFERENCES d_region (id) ON DELETE CASCADE;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2015-07-31T13:06:37.969646
+CREATE TABLE d_video(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    fileid INTEGER UNIQUE,
+    thumbnail INTEGER,
+    user_d INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE auth_user;
+success!
+DROP TABLE auth_group;
+timestamp: 2015-07-31T13:13:52.918187
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    username CHAR(128),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512),
+    dob CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
