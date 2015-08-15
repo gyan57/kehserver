@@ -80,7 +80,7 @@ def custom_importer(name, globals=None, locals=None, fromlist=None, level=-1):
                 if not fromlist:
                     # import like "import x" or "import x.y"
                     result = None
-                    for itemname in name.split("."):                        
+                    for itemname in name.split("."):
                         new_mod = base_importer(
                             modules_prefix, globals, locals, [itemname], level)
                         try:

@@ -212,7 +212,7 @@ def select():
 
     if is_imap:
         step = 3
- 
+
     stop = start + step
 
     table = None
@@ -420,7 +420,7 @@ def ccache():
         'oldest': time.time(),
         'keys': []
     }
-    
+
     disk = copy.copy(ram)
     total = copy.copy(ram)
     disk['keys'] = []
@@ -485,7 +485,7 @@ def ccache():
         ram_keys.remove('oldest')
         for key in ram_keys:
             total[key] = ram[key] + disk[key]
-            
+
         try:
             total['ratio'] = total['hits'] * 100 / (total['hits'] +
                                                 total['misses'])

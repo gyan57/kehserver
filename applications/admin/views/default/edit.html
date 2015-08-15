@@ -7,16 +7,16 @@ dirs=[{'name':'models', 'reg':'.*\.py$'},
       {'name':'modules', 'reg':'.*\.py$'},
       {'name':'static', 'reg': '[^\.#].*'},
       {'name':'private', 'reg':'.*\.py$'}]
-   
+
 def file_create_form(location, anchor=None, helptext=""):
     form=FORM(
             LABEL(T("create file with filename:")),
-            SELECT(_name='dir', _style='width:100px;', 
+            SELECT(_name='dir', _style='width:100px;',
                *[OPTION(dir['name'], _value=dir['name']) for dir in dirs]),
             XML('&nbsp;'),LABEL('/', _style='display:inline-block;'),XML('&nbsp;'),
             INPUT(_type="text",_name="filename",requires=IS_NOT_EMPTY(),_class=''),
             TAG['SMALL'](helptext,_class="help-block"),
-            INPUT(_type='submit', name=T('filename'), _value=T('Create'), _style='display:block', _id='btn_file_create'), 
+            INPUT(_type='submit', name=T('filename'), _value=T('Create'), _style='display:block', _id='btn_file_create'),
             INPUT(_type="hidden",_name="editor"),
             INPUT(_type="hidden",_name="location",_value=location),
             INPUT(_type="hidden",_name="sender",_value=URL('design',args=app)),
@@ -26,7 +26,7 @@ def file_create_form(location, anchor=None, helptext=""):
             _id='file_create_form',
             _class="generatedbyw2p well well-small")
     return form
-            
+
 }}
 
 <!-- begin "edit" block -->
@@ -237,11 +237,11 @@ $(document).on('click', 'a.font_button', function (e) {
 	      <div id="form">
         	<div>
         	  {{=file_create_form('%s/' % app, '')}}
-        	</div>          			  			
+        	</div>
       	      </div>
       	      <script>jQuery('#form').slideToggle()</script>
     	    </div>
-    	    <br />            
+    	    <br />
             <div id="files_menu">
               {{=LOAD('default', 'files_menu', vars={'app':app}, ajax=True)}}
             </div>

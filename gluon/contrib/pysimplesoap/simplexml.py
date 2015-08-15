@@ -329,7 +329,7 @@ class SimpleXMLElement(object):
                     if ref_node['id'] == href:
                         node = ref_node
                         ref_name_type = ref_node['xsi:type'].split(":")[1]
-                        break             
+                        break
 
             try:
                 if isinstance(types, dict):

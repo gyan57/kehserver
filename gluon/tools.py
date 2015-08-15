@@ -1549,7 +1549,7 @@ class Auth(object):
             # _next variable in the request.
             items = next.split('/')
             if '//' in next and items[2] != current.request.env.http_host:
-                next = None            
+                next = None
         return next
 
     def _get_user_id(self):
@@ -1606,7 +1606,7 @@ class Auth(object):
                        'retrieve_username', 'retrieve_password',
                        'reset_password', 'request_reset_password',
                        'change_password', 'profile', 'groups',
-                       'impersonate', 'not_authorized', 'confirm_registration', 
+                       'impersonate', 'not_authorized', 'confirm_registration',
                        'bulk_register','manage_tokens'):
             if len(request.args) >= 2 and args[0] == 'impersonate':
                 return getattr(self, args[0])(request.args[1])
@@ -2377,7 +2377,7 @@ class Auth(object):
         if not fields.get(settings.userfield):
             raise ValueError("register_bare: " +
                              "userfield not provided or invalid")
-        user = self.get_or_create_user(fields, login=False, get=False, 
+        user = self.get_or_create_user(fields, login=False, get=False,
                                        update_fields=self.settings.update_fields)
         if not user:
             # get or create did not create a user (it ignores duplicate records)
@@ -2894,7 +2894,7 @@ class Auth(object):
 
         passfield = self.settings.password_field
         formstyle = self.settings.formstyle
-        if self.settings.register_verify_password:            
+        if self.settings.register_verify_password:
             if self.settings.register_fields == None:
                 self.settings.register_fields = [f.name for f in table_user if f.writable]
                 k = self.settings.register_fields.index("password")
@@ -2905,7 +2905,7 @@ class Auth(object):
                         error_message=self.messages.mismatched_password),
                         label=current.T("Confirm Password"))]
         else:
-            extra_fields = []        
+            extra_fields = []
         form = SQLFORM(table_user,
                        fields=self.settings.register_fields,
                        hidden=dict(_next=next),
@@ -3305,7 +3305,7 @@ class Auth(object):
 
     def manage_tokens(self):
         if not self.user:
-            redirect(self.settings.login_url)        
+            redirect(self.settings.login_url)
         table_token =self.table_token()
         table_token.user_id.writable = False
         table_token.user_id.default = self.user.id

@@ -147,7 +147,7 @@ def process_element(elements, element_name, node, element_type, xsd_uri, dialect
                 # "anonymous" elements had no type attribute but children
                 if e['name'] and e.children():
                     # create a type name to process the children
-                    t = "%s_%s" % (element_name, e['name'])  
+                    t = "%s_%s" % (element_name, e['name'])
                     c = e.children()
                     et = c.get_local_name()
                     c = c.children()
@@ -175,7 +175,7 @@ def process_element(elements, element_name, node, element_type, xsd_uri, dialect
                             if ":" in type_name:
                                 type_name = type_name[type_name.index(":")+1:]
                             if "[]" in type_name:
-                                type_name = type_name[:type_name.index("[]")]                                
+                                type_name = type_name[:type_name.index("[]")]
                             fn.append(REVERSE_TYPE_MAP.get(type_name, None))
             else:
                 fn = None
@@ -189,7 +189,7 @@ def process_element(elements, element_name, node, element_type, xsd_uri, dialect
                 for k, v in e[:]:
                     if k.startswith("xmlns:"):
                         # get the namespace uri from the element
-                        fn_namespace = v        
+                        fn_namespace = v
                 fn = elements.setdefault(make_key(type_name, 'complexType', fn_namespace), OrderedDict())
 
             if e['maxOccurs'] == 'unbounded' or (uri == soapenc_uri and type_name == 'Array'):
@@ -224,12 +224,12 @@ def process_element(elements, element_name, node, element_type, xsd_uri, dialect
 
 def postprocess_element(elements, processed):
     """Fix unresolved references (elements referenced before its definition, thanks .net)"""
-    
+
     # avoid already processed elements:
     if elements in processed:
         return
     processed.append(elements)
-    
+
     for k, v in elements.items():
         if isinstance(v, OrderedDict):
             if v != elements:  # TODO: fix recursive elements
@@ -290,7 +290,7 @@ def preprocess_schema(schema, imported_schemas, elements, xsd_uri, dialect, http
     for ns in local_namespaces.values():
         if ns not in global_namespaces:
             global_namespaces[ns] = 'ns%s' % len(global_namespaces)
-            
+
     for element in schema.children() or []:
         if element.get_local_name() in ('import', 'include',):
             schema_namespace = element['namespace']
@@ -428,7 +428,7 @@ REVERSE_TYPE_MAP.update({
 
 # insert str here to avoid collision in REVERSE_TYPE_MAP (i.e. decoding errors)
 if str not in TYPE_MAP:
-    TYPE_MAP[str] = 'string'    
+    TYPE_MAP[str] = 'string'
 
 
 class OrderedDict(dict):

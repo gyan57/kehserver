@@ -53,7 +53,7 @@ class DropboxAccount(object):
             self.key, self.secret, self.access_type)
 
     def get_token(self):
-        if not current.session.dropbox_access_token:            
+        if not current.session.dropbox_access_token:
             request_token = current.session.dropbox_request_token
             self.sess.set_request_token(request_token[0], request_token[1])
             access_token = self.sess.obtain_access_token(self.sess.token)

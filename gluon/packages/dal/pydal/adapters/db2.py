@@ -75,7 +75,7 @@ class DB2Adapter(BaseAdapter):
         self.test_query = 'SELECT 1 FROM (VALUES ( 1 ));'
         ruri = uri.split('://', 1)[1]
 
-        
+
         def connector(cnxn=ruri,driver_args=driver_args):
             if self.driver_name == 'ibm_db_dbi':
                 vars = cnxn.split(";")
@@ -86,7 +86,7 @@ class DB2Adapter(BaseAdapter):
                 return self.driver.connect(cnxn['dsn'], cnxn['uid'], cnxn['pwd'], **driver_args)
             else:
                 return self.driver.connect(cnxn, **driver_args)
-                
+
         self.connector = connector
         if do_connect: self.reconnect()
 

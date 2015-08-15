@@ -97,7 +97,7 @@ class SQLiteAdapter(BaseAdapter):
     def REGEXP(self,first,second):
         return '(%s REGEXP %s)' % (self.expand(first),
                                    self.expand(second,'string'))
-    
+
     def delete(self, tablename, query):
         # SQLite requires its own delete to handle CASCADE
         db = self.db

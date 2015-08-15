@@ -145,7 +145,7 @@ class TokenHandler(tornado.web.RequestHandler):
 
 
 class DistributeHandler(tornado.websocket.WebSocketHandler):
-   
+
    def check_origin(self, origin):
       return True
 

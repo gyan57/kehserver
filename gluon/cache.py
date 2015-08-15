@@ -58,7 +58,7 @@ def remove_oldest_entries(storage, percentage=90):
     # compute current memory usage (%)
     old_mem = psutil.virtual_memory().percent
     # if we have data in storage and utilization exceeds 90%
-    while storage and old_mem > percentage:    
+    while storage and old_mem > percentage:
         # removed oldest entry
         storage.popitem(last=False)
         # garbage collect

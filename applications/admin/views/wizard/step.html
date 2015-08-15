@@ -64,9 +64,9 @@
 		{{if request.function!='step6':}}
 		<div class="form row-fluid">
 			{{=form.custom.begin}}
-				{{ for fieldname in form.table.fields: }} 
+				{{ for fieldname in form.table.fields: }}
 					{{if fieldname is not 'id':}}
-						<label>{{=form.custom.label[fieldname]}}:</label> 
+						<label>{{=form.custom.label[fieldname]}}:</label>
 						{{=form.custom.widget[fieldname]}}
 						{{if fieldname=='layout_theme':}}
 						<span class="help-inline">
@@ -74,7 +74,7 @@
 						</span>
 						{{pass}}
 					{{pass}}
-				{{pass}} 
+				{{pass}}
 				<div class="controls"><button type="submit" class="btn">{{=T('Submit')}}</button></div>
 			{{=form.custom.end}}
 		</div>
@@ -94,7 +94,7 @@
 		{{else:}}
 		<div class="form row-fluid">
 			{{=form.custom.begin}}
-				{{ for fieldname in form.table.fields: }} 
+				{{ for fieldname in form.table.fields: }}
 					{{if fieldname is not 'id':}}
 						<div class="control-group">
 							<label class="control-label">{{=form.custom.label[fieldname]}}:</label>

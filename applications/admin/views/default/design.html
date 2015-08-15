@@ -11,8 +11,8 @@ def editfile(path,file,vars={}):
     args=(path,file) if 'app' in vars else (app,path,file)
     return A(SPAN(T('Edit')),_class='button editbutton btn btn-mini',_href=URL('edit', args=args, vars=vars))
 def testfile(path,file):
-    return A(TAG[''](IMG(_src=URL('static', 'images/test_icon.png'), _alt=T('test')), 
-                        SPAN(T("Run tests in this file (to run all files, you may also use the button labelled 'test')"))), 
+    return A(TAG[''](IMG(_src=URL('static', 'images/test_icon.png'), _alt=T('test')),
+                        SPAN(T("Run tests in this file (to run all files, you may also use the button labelled 'test')"))),
                         _class='icon test',
                         _href=URL('test', args=(app, file)),
                         _rel="tooltip",
@@ -59,7 +59,7 @@ def upload_plugin_form(app, anchor=None):
     return form
 def deletefile(arglist, vars={}):
     vars.update({'sender':request.function+'/'+app})
-    return A(TAG[''](IMG(_src=URL('static', 'images/delete_icon.png')), 
+    return A(TAG[''](IMG(_src=URL('static', 'images/delete_icon.png')),
                         SPAN(T('Delete this file (you will be asked to confirm deletion)'))),
                         _href=URL('delete',args=arglist,vars=vars),
                         _class='icon delete',

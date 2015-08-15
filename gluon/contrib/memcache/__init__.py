@@ -52,7 +52,7 @@ class MemcacheClientObj(Client):
             time_expire = self.max_time_expire
         # this must be commented because get and set are redefined
         # key = self.__keyFormat__(key)
-        now = time.time() 
+        now = time.time()
         value = None
         if f is None: # force deletion of value
             self.delete(key)

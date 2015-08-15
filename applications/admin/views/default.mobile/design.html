@@ -20,7 +20,7 @@ def A_check(*a,**b):
     b['_data-role'] = 'button'
     b['_data-icon'] = 'check'
     return A(*a,**b)
-    
+
 def all(items):
     return reduce(lambda a,b:a and b,items,True)
 def peekfile(path,file):

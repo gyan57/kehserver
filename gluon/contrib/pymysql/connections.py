@@ -59,12 +59,12 @@ DEFAULT_CHARSET = 'latin1'
 
 
 def dump_packet(data):
-    
+
     def is_ascii(data):
         if byte2int(data) >= 65 and byte2int(data) <= 122: #data.isalnum():
             return data
         return '.'
-    
+
     try:
         print "packet length %d" % len(data)
         print "method call[1]: %s" % sys._getframe(1).f_code.co_name
@@ -417,20 +417,20 @@ class OKPacketWrapper(object):
         if not from_packet.is_ok_packet():
             raise ValueError('Cannot create ' + str(self.__class__.__name__)
                 + ' object from invalid packet type')
-        
+
         self.packet = from_packet
         self.packet.advance(1)
-        
+
         self.affected_rows = self.packet.read_length_coded_binary()
         self.insert_id = self.packet.read_length_coded_binary()
         self.server_status = struct.unpack('<H', self.packet.read(2))[0]
         self.warning_count = struct.unpack('<H', self.packet.read(2))[0]
         self.message = self.packet.read_all()
-    
+
     def __getattr__(self, key):
         if hasattr(self.packet, key):
             return getattr(self.packet, key)
-        
+
         raise AttributeError(str(self.__class__)
             + " instance has no attribute '" + key + "'")
 
@@ -445,7 +445,7 @@ class EOFPacketWrapper(object):
         if not from_packet.is_eof_packet():
             raise ValueError('Cannot create ' + str(self.__class__.__name__)
                 + ' object from invalid packet type')
-        
+
         self.packet = from_packet
         self.warning_count = self.packet.read(2)
         server_status = struct.unpack('<h', self.packet.read(2))[0]
@@ -455,7 +455,7 @@ class EOFPacketWrapper(object):
     def __getattr__(self, key):
         if hasattr(self.packet, key):
             return getattr(self.packet, key)
-        
+
         raise AttributeError(str(self.__class__)
             + " instance has no attribute '" + key + "'")
 
@@ -791,7 +791,7 @@ class Connection(object):
 
     def _execute_command(self, command, sql):
         self._send_command(command, sql)
-        
+
     def _request_authentication(self):
         self._send_authentication()
 
@@ -966,7 +966,7 @@ class MySQLResult(object):
         else:
             self.field_count = byte2int(self.first_packet.read(1))
             self._get_descriptions()
-            
+
             # Apparently, MySQLdb picks this number because it's the maximum
             # value of a 64bit unsigned integer. Since we're emulating MySQLdb,
             # we set it to this instead of None, which would be preferred.
@@ -996,7 +996,7 @@ class MySQLResult(object):
     def _read_rowdata_packet_unbuffered(self):
         # Check if in an active query
         if self.unbuffered_active == False: return
-        
+
         # EOF
         packet = self.connection.read_packet()
         if self._check_packet_is_eof(packet):

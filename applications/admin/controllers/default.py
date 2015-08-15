@@ -398,7 +398,7 @@ def pack_custom():
     app = get_app()
     base = apath(app, r=request)
     if request.post_vars.file:
-        
+
         files = request.post_vars.file
         files = [files] if not isinstance(files,list) else files
         if request.post_vars.doexe is None:
@@ -896,7 +896,7 @@ def resolve():
     def getclass(item):
         """ Determine item class """
         operators = {' ':'normal', '+':'plus', '-':'minus'}
-        
+
         return operators[item[0]]
 
     if request.vars:

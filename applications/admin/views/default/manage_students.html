@@ -49,7 +49,7 @@ if not request.args:
 		pass
 		records_counter = grid.element('div.web2py_counter')
 		records_found = int(records_counter[0].partition('records')[0].strip())
-		paginate = 5 # TODO: get it from the controller 
+		paginate = 5 # TODO: get it from the controller
 		pages = records_found/paginate
 		tot_pages = pages if records_found%paginate == 0 else pages+1
 		current_page = int(request.vars.page) if request.vars.page else 1
@@ -65,15 +65,15 @@ elif request.args(0)=='new':
 	bck_btn['_class'] = 'w2p_trap btn'
 	frm = grid.element('div.web2py_grid form')
 	frm['_class'] = 'web2py_form span4 well well-small'
-	
+
 	checkbox_lbl = frm.element('label',_for='auth_user_is_manager')
 	checkbox_inp = frm.element(_name='is_manager',replace=CAT())
 	checkbox_lbl[0] = checkbox_inp
 	checkbox_lbl[1] = 'Is Manager'
 	checkbox_lbl['_class'] = "checkbox"
-	
+
 	inp_smt = frm.element('input',_type='submit',replace=TAG['button'](T('Submit'),_type='submit',_class='btn'))
-	
+
 	new_form_flds = []
 	frm_trs = frm.elements('tr')
 	for tr in frm_trs:
@@ -95,13 +95,13 @@ elif request.args(0)=='view':
 	pen_btn['_class'] = 'w2p_trap btn'
 	frm = grid.element('div.web2py_grid form')
 	frm['_class'] = 'web2py_form span4 well well-small'
-	
+
 	checkbox_lbl = frm.element('label',_for='auth_user_is_manager')
 	checkbox_inp = frm.element(_name='is_manager',replace=CAT())
 	checkbox_lbl[0] = checkbox_inp
 	checkbox_lbl[1] = 'Is Manager'
 	checkbox_lbl['_class'] = "checkbox"
-	
+
 	new_form_flds = []
 	frm_trs = frm.elements('tr')
 	for tr in frm_trs:
@@ -125,24 +125,24 @@ elif request.args(0)=='edit':
 	viw_btn['_class'] = 'w2p_trap btn'
 	frm = grid.element('div.web2py_grid form')
 	frm['_class'] = 'web2py_form span4 well well-small'
-	
+
 	checkbox_lbl = frm.element('label',_for='auth_user_is_manager')
 	checkbox_inp = frm.element(_name='is_manager',replace=CAT())
 	checkbox_lbl[0] = checkbox_inp
 	checkbox_lbl[1] = 'Is Manager'
 	checkbox_lbl['_class'] = "checkbox"
-	
+
 	checkbox1_lbl = frm.element('label',_for='delete_record')
 	checkbox1_inp = frm.element(_id='delete_record',replace=CAT())
 	checkbox1_lbl[0] = checkbox1_inp
 	checkbox1_lbl[1] = T('Check to delete')
 	checkbox1_lbl['_class'] = "checkbox"
-	
+
 	inp_smt = frm.element('input',_type='submit',replace=TAG['button'](T('Submit'),_type='submit',_class='btn'))
-	
+
 	id_input = frm.element(_id='auth_user_id')
 	id_input['_class'] = 'uneditable-input'
-	
+
 	new_form_flds = []
 	frm_trs = frm.elements('tr')
 	for tr in frm_trs:

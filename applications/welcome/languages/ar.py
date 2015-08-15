@@ -100,7 +100,7 @@
 'Stylesheet': 'أسلوب النمط',
 'Support': 'الدعم',
 'The Core': 'النواة',
-'The output of the file is a dictionary that was rendered by the view %s': 'نتاج هذا الملف هو قاموس قًدم بواسطة العارض %s', 
+'The output of the file is a dictionary that was rendered by the view %s': 'نتاج هذا الملف هو قاموس قًدم بواسطة العارض %s',
 'The Views': 'المشاهدات',
 'This App': 'هذا التطبيق',
 'Timestamp': 'البصمة الزمنية',

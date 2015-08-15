@@ -734,7 +734,7 @@ class AutocompleteWidget(object):
                      name=name, div_id=div_id, u='F' + self.keyword)
             if self.min_length == 0:
                 attr['_onfocus'] = attr['_onkeyup']
-            return CAT(INPUT(**attr), 
+            return CAT(INPUT(**attr),
                        INPUT(_type='hidden', _id=key3, _value=value,
                              _name=name, requires=field.requires),
                        DIV(_id=div_id, _style='position:absolute;'))
@@ -747,7 +747,7 @@ class AutocompleteWidget(object):
                      key=self.keyword, id=attr['_id'], div_id=div_id, u='F' + self.keyword)
             if self.min_length == 0:
                 attr['_onfocus'] = attr['_onkeyup']
-            return CAT(INPUT(**attr), 
+            return CAT(INPUT(**attr),
                        DIV(_id=div_id, _style='position:absolute;'))
 
 
@@ -2104,7 +2104,7 @@ class SQLFORM(FORM):
             elif isinstance(orderby, Field) and orderby is not field_id:
                 # here we're with an ASC order on a field stored as orderby
                 orderby = orderby | field_id
-            elif (isinstance(orderby, Expression) and 
+            elif (isinstance(orderby, Expression) and
                   orderby.first and orderby.first is not field_id):
                 # here we're with a DESC order on a field stored as orderby.first
                 orderby = orderby | field_id

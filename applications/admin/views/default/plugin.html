@@ -8,8 +8,8 @@ def peekfile(path,file):
 def editfile(path,file):
 	return A(SPAN(T('Edit')),_class='button editbutton btn btn-mini',_href=URL('edit', args=(app, path, file)))
 def testfile(path,file):
-	return A(TAG[''](IMG(_src=URL('static', 'images/test_icon.png'), _alt=T('test')), 
-						SPAN(T("Run tests in this file"))), 
+	return A(TAG[''](IMG(_src=URL('static', 'images/test_icon.png'), _alt=T('test')),
+						SPAN(T("Run tests in this file"))),
 						_class='icon test',
 						_href=URL('test', args=(app, file)),
 						_rel="tooltip",
@@ -35,7 +35,7 @@ def file_create_form(location):
               INPUT(_type="submit",_value=T("submit")),_action=URL('create_file'))
     return form
 def deletefile(arglist):
-	return A(TAG[''](IMG(_src=URL('static', 'images/delete_icon.png')), 
+	return A(TAG[''](IMG(_src=URL('static', 'images/delete_icon.png')),
 						SPAN(T('Delete this file (you will be asked to confirm deletion)'))),
 						_href=URL('delete',args=arglist,vars=dict(sender=request.function+'/'+app+'/'+request.args[1])),
 						_class='icon delete',

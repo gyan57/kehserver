@@ -564,7 +564,7 @@ regex_quote = re.compile('(?P<name>\w+?)\s*\=\s*')
 
 def make_dict(b):
     return '{%s}' % regex_quote.sub("'\g<name>':",b)
-    
+
 def safe_eval(node_or_string, env):
     """
     Safely evaluate an expression node or a string containing a Python
@@ -1104,7 +1104,7 @@ def render(text,
                     s = strings[lineno].strip()
                     if s[:1] == '=':
                         # header or footer
-                        if s.count('=')==len(s) and len(s)>3:  
+                        if s.count('=')==len(s) and len(s)>3:
                             if not thead: # if thead list is empty:
                                 thead = tout
                             else:
@@ -1125,7 +1125,7 @@ def render(text,
                     else:
                        tr = '<tr class="first">' if rownum == 0 else '<tr>'
                     tout.append(tr + ''.join(['<td%s>%s</td>' % (
-                                    ' class="num"' 
+                                    ' class="num"'
                                     if regex_num.match(f) else '',
                                     f.strip()
                                     ) for f in s.split('|')])+'</tr>'+pp)
@@ -1160,14 +1160,14 @@ def render(text,
                     if not t_mode:
                         m = regex_tq.match(s)
                         if m:
-                            if (lineno+1 == strings_len or 
+                            if (lineno+1 == strings_len or
                                 '|' not in strings[lineno+1]):
                                t_cls = m.group('c') or ''
                                t_id = m.group('p') or ''
                                break
 
                         if regex_bq_headline.match(s):
-                            if (lineno+1 < strings_len and 
+                            if (lineno+1 < strings_len and
                                 strings[lineno+1].strip()):
                                     t_mode = True
                             lineno+=1
@@ -1183,7 +1183,7 @@ def render(text,
                     if t_cls and t_cls != 'id' else ''
                 t_id  = ' id="%s%s"'%(id_prefix,t_id) \
                     if t_id else ''
-                
+
                 s = '<blockquote%s%s>%s</blockquote>%s' \
                          % (t_cls,
                             t_id,
@@ -1336,7 +1336,7 @@ def render(text,
         t = t or ''
         a = escape(a) if a else ''
         if k:
-            if '#' in k and not ':' in k.split('#')[0]: 
+            if '#' in k and not ':' in k.split('#')[0]:
                 # wikipage, not external url
                 k=k.replace('#','#'+id_prefix)
             k = escape(k)
@@ -1354,7 +1354,7 @@ def render(text,
                    environment, latex, autolinks,
                    protolinks, class_prefix,
                    id_prefix, pretty_print))
-    
+
     parts = text.split(LINK)
     text = parts[0]
     for i,s in enumerate(links):
@@ -1502,4 +1502,4 @@ if __name__ == '__main__':
         print "       file.markmin  [file.css] - process file.markmin + built in file.css (optional)"
         print "       file.markmin  [@path_to/css] - process file.markmin + link path_to/css (optional)"
         run_doctests()
-        
+

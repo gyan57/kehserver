@@ -6,7 +6,7 @@ import datetime
 class TestDictCursor(base.PyMySQLTestCase):
 
     def test_DictCursor(self):
-        #all assert test compare to the structure as would come out from MySQLdb 
+        #all assert test compare to the structure as would come out from MySQLdb
         conn = self.connections[0]
         c = conn.cursor(pymysql.cursors.DictCursor)
         # create a table ane some data to query

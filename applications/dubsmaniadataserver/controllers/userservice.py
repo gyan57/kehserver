@@ -47,7 +47,7 @@ def login():
     return gluon.contrib.simplejson.dumps({'result': True})
 
 def loginfailed(*args):
-    raise HTTP(409, 'autorization failed') 
+    raise HTTP(409, 'autorization failed')
 
 auth.settings.on_failed_authentication = loginfailed
 
